@@ -3,11 +3,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 官方插件
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 社区提供的插件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 官方插件 注意引入时不要加{}，否则会报错
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 // 导出自定义配置项
 module.exports = {
 	// 环境模式「生产环境：production   开发环境：development」
 	// 获取环境变量 process.env.NODE_ENV
-	mode: "development",
+	// 「注意」开发模式下默认不会对css js文件进行压缩！！！
+	mode: "production",
 	// 打包入口「相对路径」 并设置多入口
 	entry: {
 		index: "./src/index.js",
@@ -20,6 +23,11 @@ module.exports = {
 		filename: "[name].[hash:8].js", // 将入口文件名作为打包后的文件名 index login
 		// 打包地址「绝对路径」
 		path: path.resolve(__dirname, "./dist"),
+	},
+	// 优化项
+	optimization: {
+		// 设置压缩方式
+		minimizer: [new CssMinimizerWebpackPlugin(), new TerserPlugin()],
 	},
 	// 插件
 	plugins: [
