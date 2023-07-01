@@ -118,6 +118,28 @@ module.exports = {
 				test: /\.svg$/,
 				use: ["file-loader"],
 			},
+			{
+				// 图片的处理
+				test: /.(png|jpe?g|gif)/i,
+				type: "javascript/auto", // webpack5需要加上这个配置
+				use: [
+					{
+						// 把指定大小内的图片BASE64
+						loader: "url-loader",
+						options: {
+							limit: 200 * 1024,
+							esModule: false,
+							// 编译后没有BASE64的图片，编译输出的路径和名称
+							name: "image/[name].[hash].[ext]",
+						},
+					},
+				],
+			},
 		],
+	},
+	// 设置打包的最大资源大小
+	performance: {
+		maxAssetSize: 100 * 1024 * 1024,
+		maxEntrypointSize: 100 * 1024 * 1024,
 	},
 };
