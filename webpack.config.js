@@ -1,19 +1,41 @@
 // Node内置的路径处理模块
 const path = require("path");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 导出自定义配置项
 module.exports = {
 	// 环境模式「生产环境：production   开发环境：development」
-	mode: "production",
+	// 获取环境变量 process.env.NODE_ENV
+	mode: "development",
 	// 打包入口「相对路径」
 	entry: "./src/index.js",
 	// 打包出口
 	output: {
 		// 生成的文件名. [hash]创建随机哈希值
-		filename: "bundle.[hash].js",
+		// filename: "main.js", // 默认是main.js文件
+		filename: "bundle.[hash:8].js",
 		// 打包地址「绝对路径」
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve(__dirname, "./dist"),
 	},
+	// 插件
+	plugins: [
+		new HtmlWebpackPlugin({
+			// 模板文件
+			template: "./public/index.html",
+			// 生成的文件名
+			filename: "index.html",
+			// 压缩
+			// minify: true,
+			minify: {
+				// 删除注释
+				removeComments: true,
+				// 删除空格
+				collapseWhitespace: true,
+			},
+		}),
+	],
+	// 模块跟插件的区别是什么？
+	// 模块是用来处理各种文件的，比如css、图片、js等等
+	// 插件是用来扩展webpack功能的
 	module: {
 		rules: [
 			{
