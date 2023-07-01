@@ -120,7 +120,7 @@ module.exports = {
 			},
 			{
 				// 图片的处理
-				test: /.(png|jpe?g|gif)/i,
+				test: /\.(png|jpe?g|gif)$/i,
 				type: "javascript/auto", // webpack5需要加上这个配置
 				use: [
 					{
@@ -130,7 +130,7 @@ module.exports = {
 							limit: 200 * 1024,
 							esModule: false,
 							// 编译后没有BASE64的图片，编译输出的路径和名称
-							name: "image/[name].[hash].[ext]",
+							name: "images/[name].[hash].[ext]",
 						},
 					},
 				],
