@@ -127,6 +127,8 @@ module.exports = {
 						// 把指定大小内的图片BASE64
 						loader: "url-loader",
 						options: {
+							// <=200kb的图片会被编译成BASE64,这样可以减少http请求，但是会增加打包后的体积
+							// 并且<=200kb的图片不会被打包成单独的文件，而是直接编译到js文件中
 							limit: 200 * 1024,
 							esModule: false,
 							// 编译后没有BASE64的图片，编译输出的路径和名称
