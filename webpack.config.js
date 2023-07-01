@@ -2,18 +2,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-// 循环遍历多个HtmlWebpackPlugin
-const htmlPlugins = ["index", "login"].map((chunk) => {
-	return new HtmlWebpackPlugin({
-		template: `./public/${chunk}.html`,
-		filename: `${chunk}.html`,
-		chunks: [chunk],
-		minify: {
-			removeComments: true,
-			collapseWhitespace: true,
-		},
-	});
-});
 // 导出自定义配置项
 module.exports = {
 	// 环境模式「生产环境：production   开发环境：development」
@@ -22,7 +10,6 @@ module.exports = {
 	// 打包入口「相对路径」 并设置多入口
 	entry: {
 		index: "./src/index.js",
-		login: "./src/login.js",
 	},
 	// 打包出口 多出口
 	output: {
@@ -35,24 +22,21 @@ module.exports = {
 	},
 	// 插件
 	plugins: [
-		...htmlPlugins,
 		// 有多少个入口就需要多少个HtmlWebpackPlugin 「循环遍历」
-		// new HtmlWebpackPlugin({
-		// 	// 模板文件
-		// 	template: "./public/index.html",
-		// 	// 生成的文件名
-		// 	filename: "index.html",
-		// 	// 压缩
-		// 	// minify: true,
-		// 	minify: {
-		// 		// 删除注释
-		// 		removeComments: true,
-		// 		// 删除空格
-		// 		collapseWhitespace: true,
-		// 	},
-		// 	// 指定导入的JS
-		// 	chunks: [chunk],
-		// }),
+		new HtmlWebpackPlugin({
+			// 模板文件
+			template: "./public/index.html",
+			// 生成的文件名
+			filename: "index.html",
+			// 压缩
+			// minify: true,
+			minify: {
+				// 删除注释
+				removeComments: true,
+				// 删除空格
+				collapseWhitespace: true,
+			},
+		}),
 		new CleanWebpackPlugin(),
 	],
 	// 模块跟插件的区别是什么？
