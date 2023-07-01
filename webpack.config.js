@@ -1,6 +1,7 @@
 // Node内置的路径处理模块
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 // 循环遍历多个HtmlWebpackPlugin
 const htmlPlugins = ["index", "login"].map((chunk) => {
 	return new HtmlWebpackPlugin({
@@ -52,6 +53,7 @@ module.exports = {
 		// 	// 指定导入的JS
 		// 	chunks: [chunk],
 		// }),
+		new CleanWebpackPlugin(),
 	],
 	// 模块跟插件的区别是什么？
 	// 模块是用来处理各种文件的，比如css、图片、js等等
