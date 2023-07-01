@@ -77,8 +77,15 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.css$/,
-				use: ["style-loader", "css-loader"],
+				// 执行顺序是从下往上，从右往左（一行写法）
+				test: /\.(css|less|sass)$/, // 正则表达式匹配css、less文件
+				use: [
+					"style-loader", // 把css插入到页面的style标签
+					"css-loader", // 把css转换成js
+					"postcss-loader", // 配合autoprefixer&browserlist自动添加css前缀「兼容」
+					"sass-loader", // 把sass转换成css
+					"less-loader", // 把less转换成css
+				],
 			},
 			{
 				test: /\.svg$/,
