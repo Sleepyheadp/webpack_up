@@ -1,7 +1,7 @@
 // Node内置的路径处理模块
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // 循环遍历多个HtmlWebpackPlugin
 const htmlPlugins = ["index", "login"].map((chunk) => {
 	return new HtmlWebpackPlugin({
