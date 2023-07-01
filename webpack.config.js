@@ -1,7 +1,8 @@
 // Node内置的路径处理模块
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // 官方插件
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 社区提供的插件
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 官方插件 注意引入时不要加{}，否则会报错
 // 导出自定义配置项
 module.exports = {
 	// 环境模式「生产环境：production   开发环境：development」
@@ -38,6 +39,9 @@ module.exports = {
 			},
 		}),
 		new CleanWebpackPlugin(),
+		new MiniCssExtractPlugin({
+			filename: "main.[hash:8].css", // 设置打包后的css文件名
+		}),
 	],
 	devServer: {
 		host: "127.0.0.1", // 域名
@@ -80,7 +84,8 @@ module.exports = {
 				// 执行顺序是从下往上，从右往左（一行写法）
 				test: /\.(css|less|sass)$/, // 正则表达式匹配css、less文件
 				use: [
-					"style-loader", // 把css插入到页面的style标签
+					MiniCssExtractPlugin.loader, // 把css抽离成单独的文件
+					// "style-loader", // 把css插入到页面的style标签
 					"css-loader", // 把css转换成js
 					"postcss-loader", // 配合autoprefixer&browserslist自动添加css前缀「浏览器兼容 -webkit- -fox- -o- 」
 					// {
