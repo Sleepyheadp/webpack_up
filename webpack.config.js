@@ -82,7 +82,15 @@ module.exports = {
 				use: [
 					"style-loader", // 把css插入到页面的style标签
 					"css-loader", // 把css转换成js
-					"postcss-loader", // 配合autoprefixer&browserlist自动添加css前缀「兼容」
+					"postcss-loader", // 配合autoprefixer&browserslist自动添加css前缀「浏览器兼容 -webkit- -fox- -o- 」
+					// {
+					// 	loader: "postcss-loader",
+					// 	options: {
+					// 		postcssOptions: {
+					// 			plugins: [require("autoprefixer")],
+					// 		},
+					// 	},
+					// },
 					"sass-loader", // 把sass转换成css
 					"less-loader", // 把less转换成css
 				],
