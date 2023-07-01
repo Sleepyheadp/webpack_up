@@ -39,6 +39,29 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(),
 	],
+	devServer: {
+		host: "127.0.0.1", // 域名
+		port: 3000, // 端口号
+		compress: true, // GZIP压缩
+		open: true, // 自动打开浏览器
+		hot: true, // 热更新
+		// 跨域代理
+		proxy: {
+			// 示例
+			// "/jian": {
+			// 	target: "https://www.jianshu.com/asimov",
+			// 	changeOrigin: true,
+			// 	ws: true,
+			// 	pathRewrite: { "^/jian": "" }
+			// },
+			// "/zhi": {
+			// 	target: "https://news-at.zhihu.com/api/4",
+			// 	changeOrigin: true,
+			// 	ws: true,
+			// 	pathRewrite: { "^/zhi": "" }
+			// }
+		},
+	},
 	// 模块跟插件的区别是什么？
 	// 模块是用来处理各种文件的，比如css、图片、js等等
 	// 插件是用来扩展webpack功能的

@@ -1,7 +1,6 @@
-let num = 1;
 const A = () => {
-	console.log("A", num);
-	num++;
-	return <div>A</div>;
+	let context = "我是A页面";
+	console.log("context", context);
+	return context;
 };
 export default A;
