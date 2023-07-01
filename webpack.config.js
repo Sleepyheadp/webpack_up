@@ -144,4 +144,10 @@ module.exports = {
 		maxAssetSize: 100 * 1024 * 1024,
 		maxEntrypointSize: 100 * 1024 * 1024,
 	},
+	resolve: {
+		alias: {
+			// 设置别名,@表示src目录,在js中可以直接使用@来引入文件 如：import App from '@/App'
+			'@': path.resolve(__dirname, './src')
+		}
+	}
 };
