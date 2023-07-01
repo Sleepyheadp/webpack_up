@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -26,8 +27,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "autoprefixer": "^10.4.14",
+    "babel": "^6.23.0",
     "browserlist": "^1.0.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",

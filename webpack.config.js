@@ -72,13 +72,19 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
+				// exclude: /node_modules/,
+				use: [
+					"babel-loader",
+					// 在babel.config.js中配置了，这里就不需要配置了
+					// {
+					//  	loader: "babel-loader",
+					// 	options: {
+					// 	presets: ["@babel/preset-env", "@babel/preset-react"],
+					// },
+				],
+				// 设置编译时忽略的文件和制定编译目录
+				include: path.resolve(__dirname, "./src"),
 				exclude: /node_modules/,
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: ["@babel/preset-react"],
-					},
-				},
 			},
 			{
 				// 执行顺序是从下往上，从右往左（一行写法）
